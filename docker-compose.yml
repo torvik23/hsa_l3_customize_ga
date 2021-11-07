@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  worker-service:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        cron: "* * * * *"
+        tz: "Europe/Kiev"
+        command: "php public/worker.php"
+    volumes:
+      - ./src:/var/www/html
